@@ -1,0 +1,2 @@
+xargs brew install --cask < ./brew_cask_list
+xargs brew install < ./brew_list
