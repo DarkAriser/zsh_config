@@ -37,10 +37,15 @@ alias grepa='f() {grep -Rin --color -e $1 *};f'
 export TERM=xterm-kitty
 
 ##### HISTORY
-HISTFILE=~~/.zsh_history
-HISTSIZE=1000000000
-SAVEHIST=1000000000
+export HISTFILE=~~/.zsh_history
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
 setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
 
+##### Enable colors
+export CLICOLOR=1
+
+##### Set up zsh-autosuggestions at the end so that it can see the state of our plugins
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
