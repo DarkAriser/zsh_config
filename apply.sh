@@ -1,6 +1,13 @@
-cp ./.zshrc    ~/.zshrc
-cp ./.p10k.zsh ~/.p10k.zsh
-cp ./kitty/*   ~/.config/kitty/
+#!/usr/bin/env bash
+
+[[ -d ~/.config/kitty/ ]] || mkdir ~/.config/kitty/
+[[ -d ~/.config/tmux/  ]] || mkdir ~/.config/tmux/
+
+cp ./.zshrc        ~/.zshrc
+cp ./.p10k.zsh     ~/.p10k.zsh
+cp ./kitty/*       ~/.config/kitty/
+cp ./tmux/*.conf*  ~/.config/tmux/
+cp ./tmux/.*.conf* ~/.config/tmux/
 
 pushd ./brew/
 ./brew_install
