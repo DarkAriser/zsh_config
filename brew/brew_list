@@ -11,7 +11,6 @@ ripgrep
 tmux
 tree-sitter-cli
 z
-zsh-autocomplete
 zsh-autosuggestions
-zsh-syntax-highlighting
+zsh-fast-syntax-highlighting
 zsh-vi-mode
