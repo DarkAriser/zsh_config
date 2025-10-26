@@ -3,11 +3,13 @@
 [[ -d ~/.config/kitty/ ]] || mkdir ~/.config/kitty/
 [[ -d ~/.config/tmux/  ]] || mkdir ~/.config/tmux/
 
-cp ./.zshrc        ~/.zshrc
-cp ./.p10k.zsh     ~/.p10k.zsh
-cp ./kitty/*       ~/.config/kitty/
-cp ./tmux/*.conf*  ~/.config/tmux/
-cp ./tmux/.*.conf* ~/.config/tmux/
+cp ./.zshrc               ~/.zshrc
+cp ./.p10k.zsh            ~/.p10k.zsh
+cp ./kitty/*              ~/.config/kitty/
+cp ./tmux/.tmux.conf      ~/.config/tmux/
+cp ./tmux/tmux.conf.local ~/.config/tmux/
+
+[[ -e ~/.config/tmux/tmux.conf ]] || ln -s ./.tmux.conf ~/.config/tmux/tmux.conf
 
 pushd ./brew/
 ./brew_install
