@@ -1,8 +1,12 @@
 bat
+colordiff
+diff-so-fancy
 duf
+esbuild
 fd
 fzf
 gh
+htop
 lazygit
 neovim
 node
@@ -10,7 +14,8 @@ powerlevel10k
 ripgrep
 tmux
 tree-sitter-cli
-z
+wget
+yarn
+zoxide
 zsh-autosuggestions
 zsh-fast-syntax-highlighting
-zsh-vi-mode

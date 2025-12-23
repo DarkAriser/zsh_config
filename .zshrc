@@ -11,7 +11,7 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Not sure shy this command has a space after the .
+# Not sure why this command has a space after the .
 [[ ! -f /opt/homebrew/etc/profile.d/z.sh ]] || . /opt/homebrew/etc/profile.d/z.sh
 
 # Set up fzf key bindings and fuzzy completion
@@ -20,6 +20,9 @@ fi
 #   ALT -C : Directory List
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 source <(fzf --zsh)
+
+# Setup zoxide
+eval "$(zoxide init zsh)"
 
 ##### Aliases {
 alias ll='ls -lh'
@@ -33,9 +36,18 @@ alias nvi='nvim ~/.config/nvim/init.lua'
 alias nvrc='nvim ~/.zshrc'
 alias srch='source ~/.zshrc'
 
+alias rga='rg -uuu'
+
+alias diff='colordiff'
+
+alias rg='rg --no-heading'
+alias rga='f() {rg --no-heading -e $1 .};f'
 alias grep='grep --color'
 alias grepa='f() {grep -Rin --color -e $1 *};f'
 ##### }
+
+# Replace cd with zoxide
+alias cd="z"
 
 ##### Enable CTRL-Z to alias to 'fg'. Stolen from fancy-ctrl-z {
 fancy-ctrl-z () {
@@ -51,18 +63,10 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 ##### }
 
-export TERM=xterm-kitty
+#export TERM=xterm-kitty
+export TERM=xterm-256color
 
 export EDITOR=nvim
-
-##### HISTORY {
-export HISTFILE=~~/.zsh_history
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
-setopt INC_APPEND_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_DUPS
-##### }
 
 ##### Enable colors
 export CLICOLOR=1
@@ -95,3 +99,15 @@ alias compinit="echo no more compinit!"
 # fi
 [[ ! -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+##### HISTORY {
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+##### }
