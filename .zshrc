@@ -40,6 +40,8 @@ alias rga='rg -uuu'
 
 alias diff='colordiff'
 
+alias lg="lazygit"
+
 alias rg='rg --no-heading'
 alias rga='f() {rg --no-heading -e $1 .};f'
 alias grep='grep --color'
@@ -71,10 +73,6 @@ export EDITOR=nvim
 ##### Enable colors
 export CLICOLOR=1
 
-##### Set up syntax highlighting at the end so that it can see the state of our plugins
-# [[ ! -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ ! -f /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] || source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
 ##################################################
 # Stolen from https://superuser.com/questions/1672475/pass-autocomplete-only-works-directly-after-installing-oh-my-zsh
 autoload -Uz compinit
@@ -89,6 +87,37 @@ compinit -u
 
 alias compinit="echo no more compinit!"
 ##################################################
+
+##################################################
+# Setup fzf-tab
+source $HOME/git_clones/fzf-tab/fzf-tab.plugin.zsh
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+##################################################
+
+
+##### Set up syntax highlighting at the end so that it can see the state of our plugins
+# [[ ! -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] || source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
 
 ##### Set up autocompletion/suggestions near the end so that aliases are loaded. HAS TO BE AFTER fast-syntax-highlighting !!!!
 # if [[ -f /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then

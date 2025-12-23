@@ -7,6 +7,7 @@ fd
 fzf
 gh
 htop
+icu4c@77
 lazygit
 neovim
 node
@@ -14,6 +15,7 @@ powerlevel10k
 ripgrep
 tmux
 tree
+tree-sitter
 tree-sitter-cli
 wget
 yarn
