@@ -13,6 +13,7 @@ node
 powerlevel10k
 ripgrep
 tmux
+tree
 tree-sitter-cli
 wget
 yarn
